@@ -945,6 +945,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e5ce46fe64a9d73be07dcbe690a38ce1b293be448fd8ce1e6c1b8062c9f72c6a"
 
 [[package]]
+name = "my_crate"
+version = "0.1.0"
+
+[[package]]
 name = "nu-ansi-term"
 version = "0.46.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1667,6 +1671,7 @@ name = "shuttle_project"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "my_crate",
  "shuttle-axum",
  "shuttle-runtime",
  "tokio",
