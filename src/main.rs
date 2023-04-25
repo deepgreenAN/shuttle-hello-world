@@ -1,6 +1,6 @@
 use my_crate::hello_world2;
 
-use std::path::Path;
+use std::path::PathBuf;
 
 use axum::{
     http::StatusCode,
@@ -17,14 +17,14 @@ async fn axum(
         local_uri = "postgres://postgres:{secrets.PASSWORD}@localhost/shuttle_example"
     )]
     pool: PgPool,
+    #[shuttle_static_folder::StaticFolder(folder = "dist")] static_folder: PathBuf,
 ) -> shuttle_axum::ShuttleAxum {
     sqlx::migrate!("./migrations")
         .run(&pool)
         .await
         .map_err(|_| CustomError::msg("migration error."))?;
 
-    let dist_path = Path::new("public");
-    let serve_dir = ServeDir::new(dist_path);
+    let serve_dir = ServeDir::new(static_folder);
 
     let router = Router::new().route("/", get(hello_world2)).nest_service(
         "/public",
