@@ -23,7 +23,7 @@ async fn axum(
         .await
         .map_err(|_| CustomError::msg("migration error."))?;
 
-    let dist_path = Path::new("./public");
+    let dist_path = Path::new("public");
     let serve_dir = ServeDir::new(dist_path);
 
     let router = Router::new().route("/", get(hello_world2)).nest_service(
