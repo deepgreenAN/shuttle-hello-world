@@ -8,6 +8,7 @@ publish = false
 
 [workspace]
 members = ["my_crate"]
+exclude = ["not_member_crate"]
 
 
 [dependencies]
